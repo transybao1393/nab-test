@@ -51,16 +51,6 @@ services:
     networks:
       - bao_network
     restart: on-failure
-  rabbitmq:
-    image: rabbitmq:latest
-    ports:
-      - "4369:4369"
-      - "5671:5671"
-      - "5672:5672"
-      - "25672:25672"
-    environment:
-      - "RABBITMQ_DEFAULT_USER=transybao"
-      - "RABBITMQ_DEFAULT_PASS=transybao"
   
 networks:
   bao_network:

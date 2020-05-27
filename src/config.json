@@ -4,5 +4,5 @@
     "MONGO_DOCUMENT": "nab-test",
     "MONGO_CONNECTION_STRING": "mongodb://transybao:transybao93@ds215229.mlab.com:15229/nab-test",
     "REDIS_HOST": "127.0.0.1",
-    "RABBITMQ_URI": "amqp://rabbitmq"
+    "RABBITMQ_URI": "amqp://transybao:Transybao93!@services_rabbitmq"
 }

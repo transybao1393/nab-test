@@ -1,7 +1,8 @@
 import amqp from 'amqplib/callback_api';
 import config from '../config.json';
 
-let publicMessage = (message) => {
+let publishMessage = (jsonData) => {
+    console.log('[*] RabbitMQ URI...', config.RABBITMQ_URI);
     amqp.connect(config.RABBITMQ_URI, function(error0, connection) {
         if (error0) {
             throw error0;
@@ -12,19 +13,14 @@ let publicMessage = (message) => {
             }
 
             var queue = 'daily.customer.activities';
-            var msg = 'Hello World!';
 
             channel.assertQueue(queue, {
                 durable: false
             });
-            channel.sendToQueue(queue, Buffer.from(msg));
+            channel.sendToQueue(queue, Buffer.from(JSON.stringify(jsonData)));
 
-            console.log(" [x] Sent %s", msg);
+            console.log("[x] Sent %s", jsonData);
         });
-        setTimeout(function() {
-            connection.close();
-            process.exit(0);
-        }, 500);
     });
 };
 
@@ -44,10 +40,11 @@ let consumeMessage = () => {
             durable: false
         });
 
-        console.log(" [*] Waiting for messages in %s. To exit press CTRL+C", queue);
+        console.log("[*] Waiting for messages in %s. To exit press CTRL+C", queue);
 
         channel.consume(queue, function(msg) {
-            console.log(" [x] Received %s", msg.content.toString());
+            let JSONDataReceived = JSON.parse(msg.content);
+            console.log("[x] Received json %s", JSONDataReceived);
         }, {
             noAck: true
         });
@@ -56,6 +53,6 @@ let consumeMessage = () => {
 };
 
 export {
-    publicMessage,
+    publishMessage,
     consumeMessage
 };

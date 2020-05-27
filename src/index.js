@@ -10,7 +10,6 @@ import productRouter from './router/product';
 import {
     trackingActivities
 } from './services/userInfo';
-// Connection.connectAndGenerateMockData();
 
 try {
     Connection.connectAndGenerateMockData();

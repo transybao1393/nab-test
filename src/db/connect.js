@@ -19,7 +19,7 @@ class Connection {
     connectAndGenerateMockData() {
         mongoose.connect(connectionString, options)
         .then(() => {
-            console.info('Database connected');
+            console.info('[*] Database connected');
 
             //- check if it has data
             ProductModel.find().limit(1).exec(async function(err, product) {
@@ -62,7 +62,7 @@ class Connection {
                         pBranch: "Louis Vution",
                         pColor: "Pink"
                     });
-                    console.info('Generated mocking data...');
+                    console.info('[*] Generated mocking data...');
                 }
             });
         }).catch(err => {
