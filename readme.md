@@ -21,6 +21,7 @@ You will need:
 1. Mac/Linux environment
 2. Github
 3. Docker
+4. NPM version 13.14.0
 
 ### Installing (Manual)
 1. Install docker on your machine or you can reference to the link to install Docker through [Homebrew](https://docs.brew.sh/Installation):
@@ -32,12 +33,12 @@ https://codingbee.net/docker/install-docker-for-mac-using-homebrew
 ```
 git clone https://github.com/transybao1393/nab-test.git
 ```
-4. Go to `nab-test` folder & run command `docker-compose up`
+4. Go to `nab-test` folder & run command `sh start.sh`
 5. Clone customer activities modules:
 ```
 git clone https://github.com/transybao1393/nab-test-customer-activities.git
 ```
-6. Go to `nab-test-customer-activities` folder & run command `docker-compose up`
+6. Go to `nab-test-customer-activities` folder & run command `sh start.sh`
 
 ### Installing (Automatically)
 1. Download file `start.sh`
@@ -50,7 +51,10 @@ sh start.sh
 ...will be update soon...
 
 ### cURL
-...will be update soon...
+[GET] curl --request GET localhost/product | json_pp
+[GET] curl --request GET localhost/product/price/asc | json_pp
+[GET] curl --request GET localhost/product/any?searchValue=T | json_pp
+[GET] curl --request GET localhost/product/range?priceFrom=100&priceTo=1000 | json_pp
 
 ### Architecture
 
