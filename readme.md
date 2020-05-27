@@ -29,13 +29,13 @@ You will need:
 ```
 https://codingbee.net/docker/install-docker-for-mac-using-homebrew
 ```
-2. Create docker network `docker network create bao_network`
-3. Clone main modules:
+2. Create docker network with `docker network create bao_network`
+3. Clone main module:
 ```
 git clone https://github.com/transybao1393/nab-test.git
 ```
 4. Go to `nab-test` folder & run command `sh start.sh`
-5. Clone customer activities modules:
+5. Clone customer activities module:
 ```
 git clone https://github.com/transybao1393/nab-test-customer-activities.git
 ```
