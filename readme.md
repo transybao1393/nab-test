@@ -17,16 +17,31 @@
 Please follow the instruction below
 
 ### Prerequisites
-You will need a Mac/Linux environment
+You will need:
+1. Mac/Linux environment
+2. Github
+3. Docker
 
-### Installing
+### Installing (Manual)
 1. Install docker on your machine or you can reference to the link to install Docker through [Homebrew](https://docs.brew.sh/Installation):
 ```
 https://codingbee.net/docker/install-docker-for-mac-using-homebrew
 ```
-2. Choose a folder to run the project
-3. Download file `start.sh`
-4. Run on your machine, if there is Mac, please follow:
+2. Create docker network `docker network create bao_network`
+3. Clone main modules:
+```
+git clone https://github.com/transybao1393/nab-test.git
+```
+4. Go to `nab-test` folder & run command `docker-compose up`
+5. Clone customer activities modules:
+```
+git clone https://github.com/transybao1393/nab-test-customer-activities.git
+```
+6. Go to `nab-test-customer-activities` folder & run command `docker-compose up`
+
+### Installing (Automatically)
+1. Download file `start.sh`
+2. Run on your machine, if there is Mac, please follow:
 ```
 sh start.sh
 ```
