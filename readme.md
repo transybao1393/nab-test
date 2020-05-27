@@ -55,8 +55,15 @@ Method | cURL
 -------|-----
 GET | curl --request GET `'localhost/product'` &#124; json_pp
 GET | curl --request GET `'localhost/product/price/asc'` &#124; json_pp
+GET | curl --request GET `'localhost/product/price/desc'` &#124; json_pp
+GET | curl --request GET `'localhost/product/price/byDate'` &#124; json_pp
+GET | curl --request GET `'localhost/product/price/alphabet'` &#124; json_pp
 GET | curl --request GET `'localhost/product/any?searchValue=T'` &#124; json_pp
+GET | curl --request GET `'localhost/product/any?searchValue=White'` &#124; json_pp
+GET | curl --request GET `'localhost/product/any?searchValue=Louis'` &#124; json_pp
+GET | curl --request GET `'localhost/product/range?priceFrom=&priceTo='` &#124; json_pp
 GET | curl --request GET `'localhost/product/range?priceFrom=100&priceTo=1000'` &#124; json_pp
+GET | curl --request GET `'localhost/product/range?priceFrom=1000&priceTo=10000'` &#124; json_pp
 
 ### Architecture
 
