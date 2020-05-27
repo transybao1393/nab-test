@@ -56,7 +56,7 @@ Method | cURL
 GET | curl --request GET `'localhost/product'` &#124; json_pp
 GET | curl --request GET `'localhost/product/price/asc'` &#124; json_pp
 GET | curl --request GET `'localhost/product/any?searchValue=T'` &#124; json_pp
-GET | curl --request GET `'localhost/product/range?priceFrom=100&amp;priceTo=1000'` &#124; json_pp
+GET | curl --request GET `'localhost/product/range?priceFrom=100&priceTo=1000'` &#124; json_pp
 
 ### Architecture
 

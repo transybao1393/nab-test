@@ -2,7 +2,7 @@
 import status from 'statuses';
 
 class MGeneralValidate {
-    async checkIfNumeric(req, res, next) {
+    checkIfNumeric(req, res, next) {
         let priceFrom = req.query.priceFrom;
         let priceTo = req.query.priceTo;
         let numericAndPositive = /^\d+$/;
