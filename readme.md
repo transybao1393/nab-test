@@ -51,10 +51,12 @@ sh start.sh
 ...will be update soon...
 
 ### cURL
-[GET] curl --request GET localhost/product | json_pp
-[GET] curl --request GET localhost/product/price/asc | json_pp
-[GET] curl --request GET localhost/product/any?searchValue=T | json_pp
-[GET] curl --request GET localhost/product/range?priceFrom=100&priceTo=1000 | json_pp
+Method | cURL
+-------|-----
+GET | `curl --request GET localhost/product | json_pp`
+GET | `curl --request GET localhost/product/price/asc | json_pp`
+GET | `curl --request GET localhost/product/any?searchValue=T | json_pp`
+GET | `curl --request GET localhost/product/range?priceFrom=100&priceTo=1000 | json_pp`
 
 ### Architecture
 
