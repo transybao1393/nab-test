@@ -3,11 +3,8 @@ import mongoose from 'mongoose';
 let Schema = mongoose.Schema;
 let ProductCategorySchema = new Schema({
 
-    pcName: {type: String, required: false},
-    pcDescription: {type: String, required: false},
-    //- foreign key
-    productId: [{ type: Schema.Types.ObjectId, ref: 'Product' }]
-
+    pcName: {type: String, index: true},
+    pcDescription: {type: String, required: false}
 }, {
     timestamps: {
         createdAt: 'created_at',

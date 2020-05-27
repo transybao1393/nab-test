@@ -1,7 +1,10 @@
 'use strict';
 import mongoose from 'mongoose';
 import config from '../config.json';
-import ProductModel from '../model/Product';
+import {
+    ProductModel,
+    ProductCategoryModel
+} from '../model/index';
 import {size} from 'lodash';
 
 // let connectionString = config.MONGO_CONNECTION_STRING;
@@ -26,41 +29,58 @@ class Connection {
                 // console.log('product size...', size(product));
                 if(!err && size(product) == 0) {
                     //- generate mock data
-                    await ProductModel.insertMany({
-                        pName: "Skirt",
-                        pPrice: 123,
-                        pBranch: "Louis Vution",
-                        pColor: "White"
+                    ProductCategoryModel.create({
+                        pcName: 'Skirt',
+                        pcDescription: 'Skirt'
+                    }, async function(err, category) {
+                        if(err);
+                        await ProductModel.insertMany({
+                            pName: "Skirt",
+                            pPrice: 123,
+                            pBranch: "Louis Vution",
+                            pColor: "White",
+                            categoryId: category._id
+                        });
                     });
-                    await ProductModel.insertMany({
-                        pName: "T-shirt",
-                        pPrice: 123,
-                        pBranch: "Louis Vution",
-                        pColor: "White"
-                    });
-                    await ProductModel.insertMany({
-                        pName: "T-shirt 2",
-                        pPrice: 1234,
-                        pBranch: "Louis Vution",
-                        pColor: "Yellow"
-                    });
-                    await ProductModel.insertMany({
-                        pName: "T-shirt 2",
-                        pPrice: 56666,
-                        pBranch: "Louis Vution",
-                        pColor: "Yellow"
-                    });
-                    await ProductModel.insertMany({
-                        pName: "T-shirt 2",
-                        pPrice: 55555,
-                        pBranch: "Louis Vution",
-                        pColor: "Pink"
-                    });
-                    await ProductModel.insertMany({
-                        pName: "T-shirt 3",
-                        pPrice: 77777,
-                        pBranch: "Louis Vution",
-                        pColor: "Pink"
+                    ProductCategoryModel.create({
+                        pcName: 'T-shirt',
+                        pcDescription: 'T-shirt'
+                    }, async function(err, category) {
+                        await ProductModel.insertMany({
+                            pName: "T-shirt",
+                            pPrice: 123,
+                            pBranch: "Chanel",
+                            pColor: "White",
+                            categoryId: category._id
+                        });
+                        await ProductModel.insertMany({
+                            pName: "T-shirt 2",
+                            pPrice: 1234,
+                            pBranch: "Louis Vution",
+                            pColor: "Yellow",
+                            categoryId: category._id
+                        });
+                        await ProductModel.insertMany({
+                            pName: "T-shirt 2",
+                            pPrice: 56666,
+                            pBranch: "Louis Vution",
+                            pColor: "Yellow",
+                            categoryId: category._id
+                        });
+                        await ProductModel.insertMany({
+                            pName: "T-shirt 2",
+                            pPrice: 55555,
+                            pBranch: "Chanel",
+                            pColor: "Pink",
+                            categoryId: category._id
+                        });
+                        await ProductModel.insertMany({
+                            pName: "T-shirt 3",
+                            pPrice: 77777,
+                            pBranch: "Louis Vution",
+                            pColor: "Pink",
+                            categoryId: category._id
+                        });
                     });
                     console.info('[*] Generated mocking data...');
                 }

@@ -26,7 +26,10 @@ let ProductSchema = new Schema({
         required: true,
         index: true,
         enum: ['Pink', 'Yellow', 'White', 'Black']
-    }
+    },
+
+    //- foreign key
+    categoryId: [{ type: Schema.Types.ObjectId, ref: 'ProductCategory' }]
 
 }, {
     timestamps: {

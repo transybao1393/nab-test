@@ -5,32 +5,53 @@ import status from 'statuses';
 
 class ProductController {
 
-    // async showProductById(req, res) {
-    //     try {
-    //         let productId = req.query.pId;
-    //         let productList = await ProductModel.find({
-    //             _id: productId
-    //         });
-    //         res.status(200).json({
-    //             error: false,
-    //             message: status.message[200],
-    //             data: productList || []
-    //         });
-    //         //- TODO: optimize error handling and response message, duplicate too much
-    //     } catch (error) {
-    //         //- throw error
-    //         console.error(error);
-    //         res.status(500).json({
-    //             error: true,
-    //             message: error.message,
-    //             data: error
-    //         });
-    //     }
-    // }
+    async showProductById(req, res) {
+        try {
+            let productId = req.params.pId;
+            let productList = await ProductModel.find({
+                _id: productId
+            }).populate('categoryId', 'pcName');
+            res.status(200).json({
+                error: false,
+                message: status.message[200],
+                data: productList || []
+            });
+        } catch (error) {
+            //- throw error
+            console.error(error);
+            res.status(500).json({
+                error: true,
+                message: error.message,
+                data: error
+            });
+        }
+    }
+
+    async showProductByCategoryId(req, res) {
+        try {
+            let categoryId = req.params.categoryId;
+            let productList = await ProductModel.find({
+                categoryId: categoryId
+            });
+            res.status(200).json({
+                error: false,
+                message: status.message[200],
+                data: productList || []
+            });
+        } catch (error) {
+            //- throw error
+            console.error(error);
+            res.status(500).json({
+                error: true,
+                message: error.message,
+                data: error
+            });
+        }
+    }
 
     async showAllProduct(req, res){
         try {
-            let productList = await ProductModel.find();
+            let productList = await ProductModel.find().populate('categoryId', 'pcName');
             res.status(200).json({
                 error: false,
                 message: status.message[200],
@@ -61,7 +82,7 @@ class ProductController {
             }else if(orderType === 'alphabet') {
                 conditions = {'pName': 1};
             }
-            let sortedProductList = await ProductModel.find().sort(conditions);
+            let sortedProductList = await ProductModel.find().populate('categoryId', 'pcName').sort(conditions);
             res.status(200).json({
                 error: false,
                 message: status.message[200],
@@ -85,7 +106,7 @@ class ProductController {
 
             let productList = await ProductModel.find({
                 pPrice: {$gt: priceFrom, $lt: priceTo}
-            });
+            }).populate('categoryId', 'pcName');
             res.status(200).json({
                 error: false,
                 message: status.message[200],
@@ -103,8 +124,6 @@ class ProductController {
     }
 
     async searchAny(req, res) {
-        //- TODO: search branch with values seperately
-
         //- search like any name, color, branch
         let searchValue = req.query.searchValue;
         console.log('search value', searchValue);
@@ -117,7 +136,7 @@ class ProductController {
                         { 'pColor': regexObj},
                         { 'pBranch': regexObj},
                     ]
-                });
+                }).populate('categoryId', 'pcName');
             res.status(200).json({
                 error: false,
                 message: status.message[200],
@@ -133,6 +152,29 @@ class ProductController {
             });
         }
     }
+
+    async searchByBranch(req, res) {
+        let branchValue = req.query.branchValue;
+        console.log('search value', branchValue);
+        let regexObj = { $regex: "^" + branchValue + "$", $options: "m" };
+        try {
+            let productList = await ProductModel.find({ 'pBranch': regexObj}).populate('categoryId', 'pcName');
+            res.status(200).json({
+                error: false,
+                message: status.message[200],
+                data: productList || []
+            });
+        } catch (error) {
+            //- throw error
+            console.error(error);
+            res.status(500).json({
+                error: true,
+                message: error.message,
+                data: error
+            });
+        }
+    }
+
 }
 
 export default new ProductController();
