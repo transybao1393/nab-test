@@ -38,4 +38,9 @@ sh start.sh
 ...will be update soon...
 
 ### Architecture
+
+#### Solution Concept Diagram
+![Solution concept](./presentation/solution-concepts.png)
+
+#### High-level Solution Diagram
 ...will be update soon...
