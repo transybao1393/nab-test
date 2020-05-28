@@ -44,9 +44,6 @@ git clone https://github.com/transybao1393/nab-test-customer-activities.git
 ### Installing (Automatically)
 ...will be update soon...
 
-### Testing
-...will be update soon...
-
 ### cURL
 Method | cURL
 -------|-----
@@ -71,4 +68,4 @@ GET | curl --request GET `'localhost/product/range?priceFrom=1000&priceTo=10000'
 ![Solution concept](./presentation/solution-concepts.png)
 
 #### High-level Solution Diagram
-...will be update soon...
+![High-level Solution Diagram](./presentation/high-level-solution-diagram.png)
